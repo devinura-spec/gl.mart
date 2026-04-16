@@ -99,15 +99,19 @@ footer {
 </div>
 
 <!-- BANNER -->
-<div class="banner">
-  <img src="https://picsum.photos/1200/300" alt="">
+<div class="carousel">
+  <div class="carousel-images">
+    <img src="images/banner1.jpg">
+    <img src="images/banner2.jpg">
+    <img src="images/banner3.jpg">
+  </div>
 </div>
 
 <!-- CATEGORY -->
 <div class="categories">
   <div class="category">📷 Kamera</div>
   <div class="category">🔭 Lensa</div>
-  <div class="category">🎥 Video</div>
+  <div class="category">🎥 Paket sewa</div>
 </div>
 
 <!-- FOOTER -->
