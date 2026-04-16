@@ -5,122 +5,169 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Glokamart</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700&display=swap" rel="stylesheet">
+
 <style>
-body {font-family:sans-serif;margin:0;background:#f5f5f5;}
-.topbar {background:#0E2877;color:white;padding:6px 15px;font-size:13px;display:flex;justify-content:space-between;}
-.topbar a {color:white;text-decoration:none;margin-right:10px;}
+body {
+    font-family: 'Urbanist', sans-serif;
+    margin: 0;
+    background: #F9FAFB;
+}
 
-.logo {padding:15px;font-weight:bold;font-size:20px;}
+/* HEADER */
+.gloka-header {
+    background: #0A2472;
+    padding: 12px 24px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
 
-.section {padding:15px;}
-.card {background:white;padding:10px;margin-bottom:10px;border-radius:8px;}
-.cart {position:fixed;bottom:20px;right:20px;background:#0E2877;color:white;padding:10px;border-radius:50%;}
+.logo {
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* SEARCH */
+.search-box {
+    display: flex;
+    background: white;
+    border-radius: 999px;
+    overflow: hidden;
+    flex: 1;
+}
+
+.search-box input {
+    flex: 1;
+    border: none;
+    padding: 10px;
+}
+
+.search-box button {
+    background: #0A6DD0;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+}
+
+/* CART */
+.cart {
+    position: relative;
+    cursor: pointer;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -5px;
+    right: -8px;
+    background: red;
+    color: white;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 50%;
+}
+
+/* BANNER */
+.banner {
+    margin: 20px auto;
+    max-width: 1000px;
+}
+
+.banner img {
+    width: 100%;
+    border-radius: 12px;
+}
+
+/* CATEGORY */
+.categories {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.category {
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    cursor: pointer;
+    text-align: center;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: white;
+    margin-top: 40px;
+}
 </style>
 </head>
 
 <body>
 
-<!-- TOP BAR -->
-<div class="topbar">
-  <div>
-    Peraturan Sewa |
-    Peralatan Sewa |
-    Cara Sewa |
-    Ikuti kami di
-  </div>
+<!-- HEADER -->
+<div class="gloka-header">
+    <div style="display:flex; align-items:center; gap:20px; max-width:1200px; margin:auto;">
+        
+        <div class="logo">Glokamart</div>
 
-  <div>
-    Notifikasi |
-    Bantuan |
-    Bahasa Indonesia |
-    <a href="#">Login</a>
-    <a href="#">Daftar</a>
-  </div>
-</div>
+        <div class="search-box">
+            <input type="text" placeholder="Cari produk...">
+            <button>🔍</button>
+        </div>
 
-<!-- LOGO -->
-<div class="logo">
-  Glokamart Glokamart
-</div>
+        <div class="cart" onclick="toggleCart()">
+            🛒
+            <span class="cart-badge" id="cart-count">0</span>
+        </div>
 
-<!-- CART -->
-<div class="section">
-  <div class="card">
-    <b>Keranjang Saya</b>
-    <div id="cart-list">
-      Keranjang kosong
     </div>
-  </div>
 </div>
 
 <!-- BANNER -->
-<div class="section">
-  <div class="card">
-    <img src="https://picsum.photos/600/200" style="width:100%;border-radius:8px;">
-  </div>
+<div class="banner">
+    <img src="https://picsum.photos/1000/300" alt="banner">
 </div>
 
-<!-- KATEGORI -->
-<div class="section">
-  <div class="card">Kamera</div>
-  <div class="card">Lensa</div>
-  <div class="card">Tripod</div>
+<!-- CATEGORY -->
+<div class="categories">
+    <div class="category">📷 Kamera</div>
+    <div class="category">🔭 Lensa</div>
+    <div class="category">🎥 Video</div>
 </div>
 
-<!-- PRODUK -->
-<div class="section">
-  <div class="card">
-    Kamera Canon <br>
-    Rp150.000 <br>
-    <button onclick="addCart('Kamera Canon',150000)">Sewa</button>
-  </div>
-
-  <div class="card">
-    Sony A7 <br>
-    Rp200.000 <br>
-    <button onclick="addCart('Sony A7',200000)">Sewa</button>
-  </div>
-</div>
-
-<!-- CART ICON -->
-<div class="cart">
-🛒 <span id="count">0</span>
+<!-- MINI CART -->
+<div id="mini-cart" style="
+position:fixed;
+right:0;
+top:0;
+width:250px;
+height:100%;
+background:white;
+box-shadow:-2px 0 10px rgba(0,0,0,0.2);
+transform:translateX(100%);
+transition:0.3s;
+padding:20px;
+z-index:999;
+">
+<h3>Keranjang</h3>
+<p>Belum ada item</p>
 </div>
 
 <!-- FOOTER -->
-<div class="section" style="text-align:center;">
-© 2026 devi dwi nuraini
-</div>
+<footer>
+© 2026 Glokamart
+</footer>
 
 <script>
-let cart = [];
-
-function addCart(name, price){
-  cart.push({name, price});
-  renderCart();
-}
-
-function renderCart(){
-  const list = document.getElementById("cart-list");
-  const count = document.getElementById("count");
-
-  count.innerText = cart.length;
-
-  if(cart.length === 0){
-    list.innerHTML = "Keranjang kosong";
-    return;
-  }
-
-  list.innerHTML = "";
-  cart.forEach(item=>{
-    list.innerHTML += `
-      <div>
-        ${item.name} <br>
-        Rp ${item.price.toLocaleString('id-ID')}
-        <hr>
-      </div>
-    `;
-  });
+function toggleCart() {
+    const cart = document.getElementById('mini-cart');
+    cart.style.transform = 
+        cart.style.transform === 'translateX(0%)'
+        ? 'translateX(100%)'
+        : 'translateX(0%)';
 }
 </script>
 
