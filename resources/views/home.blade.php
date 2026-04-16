@@ -9,98 +9,79 @@
 
 <style>
 body {
-    font-family: 'Urbanist', sans-serif;
-    margin: 0;
-    background: #F9FAFB;
+  font-family: 'Urbanist', sans-serif;
+  margin:0;
+  background:#f9fafb;
 }
 
 /* HEADER */
-.gloka-header {
-    background: #0A2472;
-    padding: 12px 24px;
-    position: sticky;
-    top: 0;
-    z-index: 50;
+.header {
+  background:#0A2472;
+  padding:12px 20px;
+  display:flex;
+  align-items:center;
+  gap:15px;
 }
 
 .logo {
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
+  color:white;
+  font-weight:700;
+  font-size:20px;
 }
 
-/* SEARCH */
-.search-box {
-    display: flex;
-    background: white;
-    border-radius: 999px;
-    overflow: hidden;
-    flex: 1;
+.search {
+  flex:1;
+  display:flex;
 }
 
-.search-box input {
-    flex: 1;
-    border: none;
-    padding: 10px;
+.search input {
+  flex:1;
+  padding:10px;
+  border:none;
+  border-radius:20px 0 0 20px;
 }
 
-.search-box button {
-    background: #0A6DD0;
-    color: white;
-    border: none;
-    padding: 10px 16px;
-}
-
-/* CART */
-.cart {
-    position: relative;
-    cursor: pointer;
-}
-
-.cart-badge {
-    position: absolute;
-    top: -5px;
-    right: -8px;
-    background: red;
-    color: white;
-    font-size: 12px;
-    padding: 2px 6px;
-    border-radius: 50%;
-}
-
-/* BANNER */
-.banner {
-    margin: 20px auto;
-    max-width: 1000px;
-}
-
-.banner img {
-    width: 100%;
-    border-radius: 12px;
+.search button {
+  background:#1d4ed8;
+  color:white;
+  border:none;
+  padding:10px 15px;
+  border-radius:0 20px 20px 0;
 }
 
 /* CATEGORY */
 .categories {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin: 30px 0;
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  margin:30px 0;
 }
 
 .category {
-    background: white;
-    padding: 15px;
-    border-radius: 12px;
-    cursor: pointer;
-    text-align: center;
+  background:white;
+  padding:15px 20px;
+  border-radius:10px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* BANNER */
+.banner {
+  width:90%;
+  margin:auto;
+  border-radius:15px;
+  overflow:hidden;
+}
+
+.banner img {
+  width:100%;
 }
 
 /* FOOTER */
 footer {
-    text-align: center;
-    padding: 20px;
-    background: white;
-    margin-top: 40px;
+  text-align:center;
+  margin-top:50px;
+  padding:20px;
+  background:white;
 }
 </style>
 </head>
@@ -108,68 +89,31 @@ footer {
 <body>
 
 <!-- HEADER -->
-<div class="gloka-header">
-    <div style="display:flex; align-items:center; gap:20px; max-width:1200px; margin:auto;">
-        
-        <div class="logo">Glokamart</div>
+<div class="header">
+  <div class="logo">Glokamart</div>
 
-        <div class="search-box">
-            <input type="text" placeholder="Cari produk...">
-            <button>🔍</button>
-        </div>
-
-        <div class="cart" onclick="toggleCart()">
-            🛒
-            <span class="cart-badge" id="cart-count">0</span>
-        </div>
-
-    </div>
+  <div class="search">
+    <input type="text" placeholder="Cari produk...">
+    <button>🔍</button>
+  </div>
 </div>
 
 <!-- BANNER -->
 <div class="banner">
-    <img src="https://picsum.photos/1000/300" alt="banner">
+  <img src="https://picsum.photos/1200/300" alt="">
 </div>
 
 <!-- CATEGORY -->
 <div class="categories">
-    <div class="category">📷 Kamera</div>
-    <div class="category">🔭 Lensa</div>
-    <div class="category">🎥 Video</div>
-</div>
-
-<!-- MINI CART -->
-<div id="mini-cart" style="
-position:fixed;
-right:0;
-top:0;
-width:250px;
-height:100%;
-background:white;
-box-shadow:-2px 0 10px rgba(0,0,0,0.2);
-transform:translateX(100%);
-transition:0.3s;
-padding:20px;
-z-index:999;
-">
-<h3>Keranjang</h3>
-<p>Belum ada item</p>
+  <div class="category">📷 Kamera</div>
+  <div class="category">🔭 Lensa</div>
+  <div class="category">🎥 Video</div>
 </div>
 
 <!-- FOOTER -->
 <footer>
-© 2026 Glokamart
+  © 2026 Glokamart
 </footer>
-
-<script>
-function toggleCart() {
-    const cart = document.getElementById('mini-cart');
-    cart.style.transform = 
-        cart.style.transform === 'translateX(0%)'
-        ? 'translateX(100%)'
-        : 'translateX(0%)';
-}
-</script>
 
 </body>
 </html>
